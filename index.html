@@ -14,6 +14,8 @@
            
         </div>
         <button class="next">Next</button>
+        <button class="prev">Prev</button>
+
     </div>
 </body>
 </html>
@@ -63,6 +65,19 @@
         padding:10px 10px 10px;
         height:12%;
         cursor: pointer;
+    }
+    .container .prev {
+        margin-top: 20px;
+        border:none;
+        outline:none;
+        background-color: rgb(94, 71, 71);
+        color:#fff;
+        width:35%;
+        padding:10px 10px 10px;
+        height:12%;
+        cursor: pointer;
+        display: none;
+    
     }
     .container .next:hover{
         background:transparent;
@@ -128,19 +143,32 @@
 
 let nextBtn = document.querySelector(".next")
 let current = 0;
-
+let prevbtn = document.querySelector(".prev")
 nextBtn.addEventListener("click" , function(){
     if(current>Questions.length-1){
         ShowQuestion([])
     }
     else{
-       
+       if(current>0){
+        prevbtn.style.display = 'inline';
+       }
+       else{
+        prevbtn.style.display = 'none';
+       }
          ShowQuestion(Questions[current])
           current++;
     } 
     
 })
 
+
+prevbtn.addEventListener("click" , function(){
+    current-=1
+    if(current<0){
+        current=0
+    }
+    ShowQuestion(Questions[current])
+})
 let Score = 0;
 let qwd = document.getElementById("qwd")
 let options = document.querySelector(".options")
